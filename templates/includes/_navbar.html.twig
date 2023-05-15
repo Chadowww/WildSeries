@@ -44,13 +44,17 @@
                 </div>
                 <div>
                     <a href="/user">Nom Prenom</a>
-                    <a href="/connexion">Connexion</a>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        Connexion
+                    </button>
                 </div>
                 <div>
                     <img src="" alt="">
                     <p>photo</p>
                 </div>
             </div>
+        {% include '/includes/_modal-form.html.twig' %}
 {#            <form class="d-flex">#}
 {#                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">#}
 {#                <button class="btn btn-outline-success" type="submit">Search</button>#}
