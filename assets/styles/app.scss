@@ -1,0 +1,13 @@
+// assets/styles/global.scss
+
+// customize some Bootstrap variables
+$primary: rgba(0, 114, 198, 1);
+$secondary: rgba(255, 188, 0, 1);
+
+// the ~ allows you to reference things in node_modules
+@import "~bootstrap/scss/bootstrap";
+@import "_includes/navbar.scss";
+
+.ws-navbar {
+    background-color: $primary;
+}
