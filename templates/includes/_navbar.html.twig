@@ -40,10 +40,12 @@
 
             <div class="element">
                 <div>
-                    <a href="/logout">Déconnexion</a>
+                    <a href="/logout">
+                        <button type="button" class="btn-warning">Déconnexion</button>
+                    </a>
                 </div>
                 <div>
-                    <a href="/user">Nom Prenom</a>
+                    <a href="/user" style="color: black">{{ last_username }}</a>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                         Connexion
