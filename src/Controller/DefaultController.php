@@ -9,26 +9,21 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Doctrine\ORM\EntityManagerInterface;
 
 
 class DefaultController extends AbstractController
 {
-    public function __construct(AuthenticationUtils $authenticationUtils)
-    {
-        $this->authenticationUtils = $authenticationUtils;
-        $this->SecurityController = new SecurityController();
 
-
-    }
     #[Route('/', name: 'app_index')]
-    public function index(): Response
+    public function index( AuthenticationUtils $authenticationUtils ,EntityManagerInterface $entityManager): Response
     {
         $user = new Users();
-        $authenticationUtils = $this->authenticationUtils;
         $error = $authenticationUtils->getLastAuthenticationError();
         $form = $this->createForm(RegistrationFormType::class, $user);
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
+
 
         return $this->render('default/index.html.twig', [
             'website' => 'Wild Séries',

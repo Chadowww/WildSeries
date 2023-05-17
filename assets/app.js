@@ -14,6 +14,7 @@ import './bootstrap';
 // console.log('Hello Webpack Encore! Edit me in assets/app.js');
 
 // app.js
+import './switch.js'
 
 const $ = require('jquery');
 // this "modifies" the jquery module: adding behavior to it
