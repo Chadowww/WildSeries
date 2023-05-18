@@ -8,6 +8,7 @@ $secondary: rgba(255, 188, 0, 1);
 @import "~bootstrap/scss/bootstrap";
 @import "_includes/navbar.scss";
 @import "_includes/carousel.scss";
+@import "_includes/card.scss";
 .ws-navbar {
     background-color: $primary;
 }

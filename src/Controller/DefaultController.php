@@ -26,8 +26,9 @@ class DefaultController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
         $series = new Series();
-        $serie = $series->getAll();
+        $news = $series->showNews();
         $discorver = $series->showDiscover();
+        $series = $series->getAll();
 
         return $this->render('default/index.html.twig', [
             'website' => 'Wild Séries',
@@ -35,8 +36,9 @@ class DefaultController extends AbstractController
             'session' => $_SESSION,
             'error' => $error,
             'registrationForm' => $form->createView(),
-            'series' => $serie,
+            'news' => $news,
             'discover' => $discorver,
+            'series' => $series,
         ]);
     }
     #[Route(path: '/logout', name: 'app_logout')]
