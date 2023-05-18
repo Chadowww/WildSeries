@@ -7,7 +7,7 @@ $secondary: rgba(255, 188, 0, 1);
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
 @import "_includes/navbar.scss";
-
+@import "_includes/carousel.scss";
 .ws-navbar {
     background-color: $primary;
 }
