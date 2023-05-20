@@ -4,7 +4,158 @@
 
 {% block body %}
     {% include 'includes/_navbar.html.twig' %}
-
+    {{ dump(series) }}
     <h1>Wild Series</h1>
     <p>Accueil</p>
+    <section class="">
+        <div id="carrousel">
+            <div class="">
+                <div class="title col-md-12 text-center"> <h2>Actualités</h2></div>
+                <div class="col-md-12">
+                    <div class="owl-carousel owl-theme">
+                        <section class="customer-logos slider">
+                            {% for new in news.news %}
+                                <div class="card slide">
+                                    <img src="{{ new.picture_url }}" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ new.title }}</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">{{ new.date }}</li>
+                                    </ul>
+                                    <div class="card-body">
+                                        <a href="{{ new.url }}" class="card-link">Aller à l'artcile</a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                          </section>
+
+
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button id="play-carousel" type="button" class="btn btn-dark">Play</button>
+                    <div class="status"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="carrousel">
+            <div class=" w-100 m-O">
+                <div class="title col-md-12 text-center"> <h2>Série à Découvrir</h2></div>
+                <div class="col-md-12">
+                    <div class="owl-carousel owl-theme">
+                        <section class="customer-logos slider">
+                            {% for serie in discover.shows %}
+                                <div class="card slide">
+                                    <img src="{{ serie.images.show }}" class="card-img-top" height="150px" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><a href="{{ serie.resource_url }}" class="card-link">{{ serie.title }}</a></h5>
+                                        <p class="card-text  text-limit ">{{ serie.description }}</p>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Genres :
+                                            {% for genre in serie.genres  %}
+                                                {{ genre }},
+                                            {% endfor %}</li>
+                                        <li class="list-group-item">Sortie :  {{ serie.creation }}</li>
+                                        <li class="list-group-item">Note :  {{ serie.notes.mean }}</li>
+
+                                    </ul>
+                                    <div class="card-body">
+                                        <a href="{{ serie.resource_url }}" class="card-link">Aller à la série</a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </section>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button id="play-carousel" type="button" class="btn btn-dark">Play</button>
+                    <div class="status"></div>
+                </div>
+            </div>
+        </div>
+        <div class="w-10">
+                <ul class="card-list">
+                                {% for serie in series.shows %}
+
+                    <li class="card">
+                        <a class="card-image" href="/series/{{ serie.id }}"
+                           target="_blank" style="background-image: url({{ serie.poster }});" data-image-full="{{ serie.poster }}">
+                            <img src="{{ serie.poster }}" alt="Psychopomp" />
+                        </a>
+                        <a class="card-description" href="/series/{{ serie.id }}" target="_blank">
+                            <h2 class="text-limit">{{ serie.title }}</h2>
+                            <p>sortie en {{ serie.release_date }} et suivit par {{ serie.following }} personnes</p>
+                        </a>
+                    </li>
+                                {% endfor %}
+
+                </ul>
+        </div>
+    </section>
+    <script>
+        // This is "probably" IE9 compatible but will need some fallbacks for IE8
+        // - (event listeners, forEach loop)
+
+        // wait for the entire page to finish loading
+        window.addEventListener('load', function() {
+
+            // setTimeout to simulate the delay from a real page load
+            setTimeout(lazyLoad, 1000);
+
+        });
+
+        function lazyLoad() {
+            var card_images = document.querySelectorAll('.card-image');
+
+            // loop over each card image
+            card_images.forEach(function(card_image) {
+                var image_url = card_image.getAttribute('data-image-full');
+                var content_image = card_image.querySelector('img');
+
+                // change the src of the content image to load the new high res photo
+                content_image.src = image_url;
+
+                // listen for load event when the new photo is finished loading
+                content_image.addEventListener('load', function() {
+                    // swap out the visible background image with the new fully downloaded photo
+                    card_image.style.backgroundImage = 'url(' + image_url + ')';
+                    // add a class to remove the blur filter to smoothly transition the image change
+                    card_image.className = card_image.className + ' is-loaded';
+                });
+
+            });
+
+        }
+
+
+        $(document).ready(function(){
+            $('.customer-logos').slick({
+                slidesToShow: 6,
+                slidesToScroll: 6,
+                autoplay: true,
+                speed: 2000,
+                autoplaySpeed: 5000,
+                arrows: false,
+                dots: false,
+                pauseOnHover: false,
+                responsive: [{
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 4
+                    }
+                }, {
+                    breakpoint: 520,
+                    settings: {
+                        slidesToShow: 3
+                    }
+                }]
+            });
+        });
+
+    </script>
+
 {% endblock %}
