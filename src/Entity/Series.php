@@ -43,6 +43,19 @@ class Series
         $response = $response->toArray();
         return $response;
     }
+    public function showPopular(): array
+    {
+        $client = HttpClient::create();
+        $response = $client->request(
+            'GET',
+            'https://api.betaseries.com/shows/list?key=17d61e0acf16&order=popularity&limit=20'
+        );
+
+        $statusCode = $response->getStatusCode();
+
+        $response = $response->toArray();
+        return $response;
+    }
     public function showDiscover(): array
     {
         $client = HttpClient::create();
@@ -62,6 +75,72 @@ class Series
         $response = $client->request(
             'GET',
             'https://api.betaseries.com/news/last?number=20&key=17d61e0acf16'
+        );
+
+        $statusCode = $response->getStatusCode();
+
+        $response = $response->toArray();
+        return $response;
+    }
+    public function getCategories(): array
+    {
+        $client = HttpClient::create();
+        $response = $client->request(
+            'GET',
+            'https://api.betaseries.com/shows/genres?key=17d61e0acf16'
+        );
+
+        $statusCode = $response->getStatusCode();
+
+        $response = $response->toArray();
+        return $response;
+    }
+    public function getEpisodes(int $id): array
+    {
+        $client = HttpClient::create();
+        $response = $client->request(
+            'GET',
+            'https://api.betaseries.com/shows/episodes?key=17d61e0acf16&id='. $id
+        );
+
+        $statusCode = $response->getStatusCode();
+
+        $response = $response->toArray();
+        return $response;
+    }
+
+    public function getByCategories($categories): array
+    {
+        $client = HttpClient::create();
+        $response = $client->request(
+            'GET',
+            'https://api.betaseries.com/shows/list?limit=300&key=17d61e0acf16'
+        );
+
+        $statusCode = $response->getStatusCode();
+
+        $response = $response->toArray();
+        return $response;
+    }
+    public function getCharacters(int $id): array
+    {
+        $client = HttpClient::create();
+        $response = $client->request(
+            'GET',
+            'https://api.betaseries.com/shows/characters?key=17d61e0acf16&id='. $id
+        );
+
+        $statusCode = $response->getStatusCode();
+
+        $response = $response->toArray();
+        return $response;
+    }
+    public function getCharacterById(int $id): array
+    {
+        $client = HttpClient::create();
+        $response = $client->request(
+            'GET',
+            'https://api.betaseries.com/persons/person?key=17d61e0acf16&id='. $id
         );
 
         $statusCode = $response->getStatusCode();

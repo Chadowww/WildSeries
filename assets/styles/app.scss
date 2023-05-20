@@ -9,6 +9,32 @@ $secondary: rgba(255, 188, 0, 1);
 @import "_includes/navbar.scss";
 @import "_includes/carousel.scss";
 @import "_includes/card.scss";
+@import "_includes/series.scss";
+@import "_includes/card-actor.scss";
+@import "_includes/actor.scss";
 .ws-navbar {
     background-color: $primary;
+}
+body{
+    background-color: #100e17;
+}
+h2{
+    color: white;
+    font-weight: 300;
+    margin: 50px auto;
+    text-align: center;
+}
+h5{
+    color: white;
+    font-weight: 200;
+    margin: 10px 0px;
+    text-align: center;
+    width: 100%;
+}
+a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+p{
+    margin: 0;
 }

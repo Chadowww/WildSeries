@@ -3,10 +3,8 @@
 {% block title %}Wild Series {% endblock %}
 
 {% block body %}
+{#    {{ dump() }}#}
     {% include 'includes/_navbar.html.twig' %}
-    {{ dump(series) }}
-    <h1>Wild Series</h1>
-    <p>Accueil</p>
     <section class="">
         <div id="carrousel">
             <div class="">
@@ -15,18 +13,20 @@
                     <div class="owl-carousel owl-theme">
                         <section class="customer-logos slider">
                             {% for new in news.news %}
-                                <div class="card slide">
+                                <div class="card-car slide">
+                                    <a href="{{ new.url }}">
                                     <img src="{{ new.picture_url }}" class="card-img-top" alt="...">
                                     <div class="card-body">
-                                        <h5 class="card-title">{{ new.title }}</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <h5 class="card-title text-limit">{{ new.title }}</h5>
+                                        <p class="card-text"></p>
                                     </div>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item">{{ new.date }}</li>
                                     </ul>
-                                    <div class="card-body">
+                                    <div style="text-align: center">
                                         <a href="{{ new.url }}" class="card-link">Aller à l'artcile</a>
                                     </div>
+                                    </a>
                                 </div>
                             {% endfor %}
                           </section>
@@ -34,10 +34,10 @@
 
                     </div>
                 </div>
-                <div class="text-center">
-                    <button id="play-carousel" type="button" class="btn btn-dark">Play</button>
-                    <div class="status"></div>
-                </div>
+{#                <div class="text-center">#}
+{#                    <button id="play-carousel" type="button" class="btn btn-dark">Play</button>#}
+{#                    <div class="status"></div>#}
+{#                </div>#}
             </div>
         </div>
 
@@ -48,7 +48,7 @@
                     <div class="owl-carousel owl-theme">
                         <section class="customer-logos slider">
                             {% for serie in discover.shows %}
-                                <div class="card slide">
+                                <div class="card-car slide">
                                     <img src="{{ serie.images.show }}" class="card-img-top" height="150px" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title"><a href="{{ serie.resource_url }}" class="card-link">{{ serie.title }}</a></h5>
@@ -56,14 +56,14 @@
                                     </div>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item">Genres :
-                                            {% for genre in serie.genres  %}
+                                            {% for genre in serie.genres | slice (0, 2)  %}
                                                 {{ genre }},
                                             {% endfor %}</li>
                                         <li class="list-group-item">Sortie :  {{ serie.creation }}</li>
                                         <li class="list-group-item">Note :  {{ serie.notes.mean }}</li>
 
                                     </ul>
-                                    <div class="card-body">
+                                    <div style="text-align: center">
                                         <a href="{{ serie.resource_url }}" class="card-link">Aller à la série</a>
                                     </div>
                                 </div>
@@ -71,27 +71,29 @@
                         </section>
                     </div>
                 </div>
-                <div class="text-center">
-                    <button id="play-carousel" type="button" class="btn btn-dark">Play</button>
-                    <div class="status"></div>
-                </div>
+{#                <div class="text-center">#}
+{#                    <button id="play-carousel" type="button" class="btn btn-dark">Play</button>#}
+{#                    <div class="status"></div>#}
+{#                </div>#}
             </div>
         </div>
-        <div class="w-10">
-                <ul class="card-list">
-                                {% for serie in series.shows %}
 
-                    <li class="card">
-                        <a class="card-image" href="/series/{{ serie.id }}"
-                           target="_blank" style="background-image: url({{ serie.poster }});" data-image-full="{{ serie.poster }}">
-                            <img src="{{ serie.poster }}" alt="Psychopomp" />
-                        </a>
-                        <a class="card-description" href="/series/{{ serie.id }}" target="_blank">
-                            <h2 class="text-limit">{{ serie.title }}</h2>
-                            <p>sortie en {{ serie.release_date }} et suivit par {{ serie.following }} personnes</p>
-                        </a>
-                    </li>
-                                {% endfor %}
+        <div class="w-10">
+            <div class="title col-md-12 text-center"> <h2>Série Populaire</h2></div>
+                <ul class="card-list">
+                     {% for serie in series.shows %}
+                        <li class="card-car">
+                            <a class="card-image" href="/series/{{ serie.id }}"
+                                style="background-image: url({{ serie.images.poster }});"
+                               data-image-full="{{ serie.images.poster }}">
+                                <img src="{{ serie.images.poster }}" alt="{{ serie.title }}" />
+                            </a>
+                            <a class="card-description" href="/series/{{ serie.id }}">
+                                <h2 class="text-limit">{{ serie.title }}</h2>
+                                <p>sortie en {{ serie.creation }} et suivit par {{ serie.followers }} personnes</p>
+                            </a>
+                        </li>
+                    {% endfor %}
 
                 </ul>
         </div>

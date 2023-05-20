@@ -1,7 +1,4 @@
-h2{
-  text-align:center;
-  padding: 20px;
-}
+
 /* Slider */
 
 .slick-slide {
@@ -125,10 +122,11 @@ h2{
     text-overflow: ellipsis;
     white-space: pre-wrap;
     width: 100%;
-    height: 150px;
+    height: 120px;
 }
 .card-link{
   text-overflow: ellipsis;
   white-space: pre-wrap;
   overflow-y: scroll;
+  margin: 10px auto;
 }
