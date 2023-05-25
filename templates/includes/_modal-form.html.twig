@@ -1,46 +1,48 @@
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="loginTitle">Connexion</h5>
-        <h5 class="modal-title" id="registerTitle">Inscription</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <div class="login" id="loginForm">{% include '/security/login.html.twig' %}</div>
-          <div class="register" id="registerForm">{% include '/registration/register.html.twig' %}</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary"  id="buttonToggle" onclick="toggleForm()">Inscription</button>
-      </div>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content modal-connexion">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginTitle">Connexion</h5>
+                <h5 class="modal-title" id="registerTitle">Inscription</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="login" id="loginForm">{% include '/security/login.html.twig' %}</div>
+                <div class="register" id="registerForm">{% include '/registration/register.html.twig' %}</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="buttonToggle" onclick="toggleForm()">Inscription
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <script>
-  function toggleForm() {
-    var loginForm = document.getElementById("loginForm");
-    var registerForm = document.getElementById("registerForm");
-    var loginTitle = document.getElementById("loginTitle");
-    var registerTitle = document.getElementById("registerTitle");
-    var buttonToggle = document.getElementById("buttonToggle");
+    function toggleForm() {
+        let loginForm = document.getElementById("loginForm");
+        let registerForm = document.getElementById("registerForm");
+        let loginTitle = document.getElementById("loginTitle");
+        let registerTitle = document.getElementById("registerTitle");
+        let buttonToggle = document.getElementById("buttonToggle");
 
 
-    if (loginForm.style.display === "none") {
-      loginForm.style.display = "block";
-      loginTitle.style.display = "block";
-      registerForm.style.display = "none";
-      registerTitle.style.display = "none";
-      buttonToggle.innerHTML = "Inscription";
-    } else {
-      loginForm.style.display = "none";
-      loginTitle.style.display = "none";
-      registerForm.style.display = "block";
-      registerTitle.style.display = "block";
-        buttonToggle.innerHTML = "Connexion";
+        if (loginForm.style.display === "none") {
+            loginForm.style.display = "block";
+            loginTitle.style.display = "block";
+            registerForm.style.display = "none";
+            registerTitle.style.display = "none";
+            buttonToggle.innerHTML = "Inscription";
+        } else {
+            loginForm.style.display = "none";
+            loginTitle.style.display = "none";
+            registerForm.style.display = "block";
+            registerTitle.style.display = "block";
+            buttonToggle.innerHTML = "Connexion";
+        }
     }
-  }
 </script>

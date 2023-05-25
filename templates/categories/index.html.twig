@@ -2,17 +2,19 @@
 
 {% block title %}{{ categorie }}{% endblock %}
 {% block body %}
+{#    {{ dump(series) }}#}
     {% include 'includes/_navbar.html.twig' %}
-{#    {{ dump() }}#}
     <section>
         <div class="w-10">
-            <div class="title col-md-12 text-center"> <h1>{{ categorie }}</h1></div>
+            <div class="title col-md-12 text-center"><h1>{{ categorie }}</h1></div>
             <ul class="card-list">
                 {% for serie in series.shows%}
                     {% if serie.images.poster is not null and categorie in serie.genres %}
-                        <li class="card-car">
-                            <a class="card-image" href="/series/{{ serie.id }}" style="background-image: url({{ serie.images.poster }});" data-image-full="{{ serie.images.poster }}">
-                                <img src="{{ serie.images.poster }}" alt="{{ serie.title }}" />
+                        <li class="card-car radius card-category">
+                            <a class="card-image" href="/series/{{ serie.id }}"
+                               style="background-image: url({{ serie.images.poster }});"
+                               data-image-full="{{ serie.images.poster }}">
+                                <img src="{{ serie.images.poster }}" alt="{{ serie.title }}"/>
                             </a>
                             <a class="card-description" href="/series/{{ serie.id }}">
                                 <h2 class="text-limit">{{ serie.title }}</h2>

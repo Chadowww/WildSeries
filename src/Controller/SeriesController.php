@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Comments;
 use App\Entity\Series;
 use App\Entity\Users;
 use App\Form\RegistrationFormType;
@@ -15,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 class SeriesController extends AbstractController
 {
     #[Route('/series/{id}', name: 'app_series', methods: ['GET', 'POST'])]
-    public function index(AuthenticationUtils $authenticationUtils, $id,EntityManagerInterface $entityManager,): Response
+    public function index(AuthenticationUtils $authenticationUtils, $id, EntityManagerInterface $entityManager,): Response
     {
         $user = new Users();
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -29,6 +30,8 @@ class SeriesController extends AbstractController
         $categories = $series->getCategories();
         $episodes = $series->getEpisodes($id);
         $characters = $series->getCharacters($id);
+        $comment = new Comments();
+        $comments = $comment->getCommentsBySeriesId($id);
         return $this->render('series/index.html.twig', [
             'controller_name' => 'SeriesController',
             'error' => $error,
@@ -38,6 +41,7 @@ class SeriesController extends AbstractController
             'categories' => $categories,
             'episodes' => $episodes,
             'characters' => $characters,
+            'comments' => $comments,
         ]);
     }
 
@@ -60,6 +64,6 @@ class SeriesController extends AbstractController
             'registrationForm' => $form->createView(),
             'last_username' => $lastUsername,
             'categories' => $categories,
-            ]);
+        ]);
     }
 }

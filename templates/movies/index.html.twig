@@ -1,0 +1,128 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ movie.movie.title }}{% endblock %}
+
+{% block body %}
+{{ dump()}}
+    {% include 'includes/_navbar.html.twig' %}
+
+    <section class="main" style="background-image: url('{{ movie.movie.backdrop }}')">
+
+        <div class="banner">
+            <h1>{{ movie.movie.title }}</h1>
+        </div>
+
+        <div class="body-container container">
+
+            <div class="body-description">
+                <img src="{{ movie.movie.poster }}" alt="">
+                <div class="description">
+                    <p>{{ movie.movie.synopsis }}</p>
+                </div>
+            </div>
+
+            <div class="body-infos cards">
+
+                <div class=" card [ is-collapsed ] ">
+                    <div class="card__inner [ js-expander ]">
+                        <span>Les notes :</span>
+                    </div>
+                    <div class="card__expander">
+                        {% for key, note in movie.movie.notes %}
+                            <div>
+                                <p>{{ key }} : {{ note }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class=" card [ is-collapsed ] ">
+                    <div class="card__inner [ js-expander ]">
+                        <span>{{ movie.movie.followers }} suivent cette série</span>
+                    </div>
+                </div>
+
+                <div class=" card [ is-collapsed ] ">
+                    <div class="card__inner [ js-expander ]">
+                        <span>créé en {{ movie.movie.production_year }} par :</span>
+                    </div>
+                    <div class="card__expander">
+                            <div>
+                                <p>{{ movie.movie.director }}</p>
+                            </div>
+                    </div>
+                </div>
+
+                <div class=" card [ is-collapsed ] ">
+                    <div class="card__inner [ js-expander ]">
+                        <span>Les genres </span>
+                    </div>
+                    <div class="card__expander">
+                        {% for genre in movie.movie.genres %}
+                            <p>{{ genre }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="container-actor">
+
+            <h2>Acteurs principaux</h2>
+
+            <div style="display: flex; justify-content: center">
+
+                {% for character in characters.characters |slice(0, 10) %}
+                    <a href="/actors/{{ character.person_id }}">
+                        <div class="card-actor">
+                            <h3 class="title">{{ character.actor }}</h3>
+                            <div class="bar">
+                                <div class="emptybar"></div>
+                                <div class="filledbar"></div>
+                                <h5>{{ character.name }}</h5>
+                            </div>
+                            <div class="circle" style="background-image: url()">
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+
+            </div>
+        </div>
+
+    </section>
+
+    <script>
+        let $cell = $('.card');
+
+        //open and close card when clicked on card
+        $cell.find('.js-expander').click(function () {
+
+            let $thisCell = $(this).closest('.card');
+
+            if ($thisCell.hasClass('is-collapsed')) {
+                $cell.not($thisCell).removeClass('is-expanded').addClass('is-collapsed').addClass('is-inactive');
+                $thisCell.removeClass('is-collapsed').addClass('is-expanded');
+
+                if ($cell.not($thisCell).hasClass('is-inactive')) {
+                    //do nothing
+                } else {
+                    $cell.not($thisCell).addClass('is-inactive');
+                }
+
+            } else {
+                $thisCell.removeClass('is-expanded').addClass('is-collapsed');
+                $cell.not($thisCell).removeClass('is-inactive');
+            }
+        });
+
+        //close card when click on cross
+        $cell.find('.js-collapser').click(function () {
+
+            let $thisCell = $(this).closest('.card');
+
+            $thisCell.removeClass('is-expanded').addClass('is-collapsed');
+            $cell.not($thisCell).removeClass('is-inactive');
+
+        });
+    </script>
+{% endblock %}

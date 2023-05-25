@@ -26,14 +26,15 @@ class ActorsController extends AbstractController
         $categories = $series->getCategories();
 
         return $this->render('actors/index.html.twig', [
-            'registrationForm'=>$form->createView(),
-            'error'=>$error,
+            'registrationForm' => $form->createView(),
+            'error' => $error,
             'last_username' => $lastUsername,
             'categories' => $categories,
         ]);
     }
+
     #[Route('/actors/{id}', name: 'app_actors_byid', methods: ['GET', 'POST'])]
-    public function showByid(AuthenticationUtils $authenticationUtils,$id): Response
+    public function showByid(AuthenticationUtils $authenticationUtils, $id): Response
     {
         $user = new Users();
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -47,8 +48,8 @@ class ActorsController extends AbstractController
         $actors = $series->getCharacterbyId($id);
 
         return $this->render('actors/index.html.twig', [
-            'registrationForm'=>$form->createView(),
-            'error'=>$error,
+            'registrationForm' => $form->createView(),
+            'error' => $error,
             'last_username' => $lastUsername,
             'categories' => $categories,
             'actors' => $actors,

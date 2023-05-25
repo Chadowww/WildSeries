@@ -3,7 +3,6 @@
 {% block title %}{{ actors.person.name }}{% endblock %}
 
 {% block body %}
-{#    {{ dump(actors) }}#}
     {% include 'includes/_navbar.html.twig' %}
     <div class="container">
         <h1> {{ actors.person.name }}</h1>
@@ -17,30 +16,49 @@
     </div>
 
     <div class="car-list">
-        <div class="title col-md-12 text-center"> <h2>Séries</h2></div>
+
+        <div class="title col-md-12 text-center"><h2>Séries</h2></div>
+
         {% for series in actors.person.shows %}
-            <div class="cta card-car" style="background-image: url('{{ series.show.poster }}'); background-size:
-                    contain">
-                <div class="text">
-                    <h2>Année : {{ series.show.creation }}</h2>
-                    <h2>{{ series.show.seasons }} saisons.</h2>
-                    <h2>{{ series.show.episodes }} épisodes.</h2>
-                    <h2>{{ series.show.followers }} followers</h2>
+            <a href="/series/{{ series.show.id }}">
+                <div class="cta card-car radius" style="background-image: url('{{ series.show.poster }}');
+                        background-size:
+                        cover">
+                    <div class="text hover-card">
+                        <h2>Année : {{ series.show.creation }}</h2>
+                        <h2>{{ series.show.seasons }} saisons.</h2>
+                        <h2>{{ series.show.episodes }} épisodes.</h2>
+                        <h2>{{ series.show.followers }} followers</h2>
+                    </div>
                 </div>
-            </div>
+            </a>
         {% endfor %}
+
+        {% if actors.person.shows is empty %}
+            <h2>Pas de série connu.</h2>
+        {% endif %}
+
     </div>
     <div class="car-list">
-        <div class="title col-md-12 text-center"> <h2>Films</h2></div>
+
+        <div class="title col-md-12 text-center"><h2>Films</h2></div>
+
         {% for movie in actors.person.movies %}
-            <div class="cta card-car" style="background-image: url('{{ movie.movie.poster }}'); background-size:
-                    contain">
-                <div class="text">
-                    <h2>Année : {{ movie.movie.production_year }}</h2>
-                    <h2>{{ movie.movie.followers }} followers</h2>
+            <a href="/movies/{{ movie.movie.id }}">
+                <div class="cta card-car" style="background-image: url('{{ movie.movie.poster }}'); background-size:
+                        contain">
+                    <div class="text">
+                        <h2>Année : {{ movie.movie.production_year }}</h2>
+                        <h2>{{ movie.movie.followers }} followers</h2>
+                    </div>
                 </div>
-            </div>
+            </a>
         {% endfor %}
+
+        {% if actors.person.movies is empty %}
+            <h2>Pas de film connu.</h2>
+        {% endif %}
+
     </div>
 
 {% endblock %}

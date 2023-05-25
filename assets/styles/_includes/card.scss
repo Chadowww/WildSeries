@@ -45,25 +45,28 @@
 .card-car {
   display: inline-block;
   width: 90%;
+  //height: 600px;
   max-width: 20rem;
   margin: 1rem;
   font-size: 1rem;
   text-decoration: none;
   overflow: hidden;
-  box-shadow: 0 0 3rem -1rem rgba(0,0,0,0.5);
+  box-shadow: 0 0 3rem -1rem rgb(201, 24, 74);
   transition: transform 0.1s ease-in-out, box-shadow 0.1s;
 }
 
 .card:hover {
   transform: translateY(-0.5rem) scale(1.0125);
-  box-shadow: 0 0.5em 3rem -1rem rgba(0,0,0,0.5);
+  box-shadow: 0 0.5em 3rem -1rem rgb(201, 24, 74);
 }
 
 .card-description {
-  display: block;
+  display: flex;
+  flex-direction: column;
   padding: 1em 0.5em;
   color: #fff;
   text-decoration: none;
+  height: 180px;
 }
 
 .card-description > h2 {
@@ -72,4 +75,15 @@
 
 .card-description > p {
   margin: 0;
+}
+.card-category{
+  height: 600px;
+}
+.card-category:hover {
+  transform: translateY(-0.5rem) scale(1.0125);
+  box-shadow: 0 0.5em 3rem -1rem rgb(201, 24, 74);
+}
+.card-default:hover{
+  transform: translateY(-0.5rem) scale(1.1125);
+  box-shadow: 0 0.5em 3rem -1rem rgb(201, 24, 74);
 }

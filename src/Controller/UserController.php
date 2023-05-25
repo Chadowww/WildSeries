@@ -10,30 +10,32 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-class CategoriesController extends AbstractController
+class UserController extends AbstractController
 {
-    #[Route('/category/{categories}', name: 'app_categories', methods: ['GET', 'POST'])]
-    public function index(AuthenticationUtils $authenticationUtils, $categories): Response
+    #[Route('/user', name: 'app_user')]
+    public function index(): Response
+    {
+
+        return $this->render('user/index.html.twig', [
+            'controller_name' => 'UserController',
+        ]);
+    }
+    #[Route('/user/{id}', name: 'app_user', methods: ['GET', 'POST'])]
+    public function show(AuthenticationUtils$authenticationUtils): Response
     {
         $user = new Users();
         $error = $authenticationUtils->getLastAuthenticationError();
-
         $form = $this->createForm(RegistrationFormType::class, $user);
 
         $lastUsername = $authenticationUtils->getLastUsername();
-
-        $series = new Series();
-        $serie = $series->getByCategories($categories);
-        $categorie = $series->getCategories();
-
-        return $this->render('categories/index.html.twig', [
-            'website' => 'Wild Séries',
+        $serie = new Series();
+        $categories = $serie->getCategories();
+        return $this->render('user/index.html.twig', [
+            'controller_name' => 'UserController',
             'last_username' => $lastUsername,
             'error' => $error,
             'registrationForm' => $form->createView(),
-            'categories' => $categorie,
-            'series' => $serie,
-            'categorie' => $categories,
+            "categories" => $categories,
         ]);
     }
 }

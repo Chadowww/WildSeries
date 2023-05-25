@@ -50,6 +50,12 @@
   justify-content: space-evenly;
   //align-items: center;
 }
+
+.modal-connexion{
+  background-color: #100e17;
+  color: whitesmoke;
+  border: none;
+}
 // Cards
 $light-gray: #eceef1;
 $gray: darken(#eceef1, 30%);
@@ -113,7 +119,7 @@ $turquoise: #bc1a76;
 
   &:hover {
     .card__inner {
-      background-color: #17141d;
+      background-color: grey;
       transform: scale(1.05);
     }
   }
@@ -123,7 +129,7 @@ $turquoise: #bc1a76;
     padding: 30px;
     position: relative;
     cursor: pointer;
-    background-color: $gray;
+    background-color: #17141d;
     color: $light-gray;
     text-transform: uppercase;
     text-align: center;
@@ -185,7 +191,6 @@ $turquoise: #bc1a76;
   &.is-expanded {
 
     .card__inner {
-      background-color: $turquoise;
 
       &:after{
         content: "";
@@ -208,8 +213,9 @@ $turquoise: #bc1a76;
     }
 
     .card__expander {
+      background-color: #17141d;
       max-height: 1000px;
-      min-height: 200px;
+      min-height: 80px;
       overflow: visible;
       margin-top: 30px;
       opacity: 1;
@@ -282,7 +288,6 @@ $turquoise: #bc1a76;
 // cards actor
 
 .container-actor {
-  height: 300px;
   width: 100%;
   left: calc(50% - 300px);
   display: flex;
@@ -299,7 +304,7 @@ $turquoise: #bc1a76;
   background-color: #17141d;
   border-radius: 10px;
   box-shadow: -1rem 0 3rem #000;
-  margin-left: -75px;
+  margin-left: -110px;
   transition: 0.4s ease-out;
   position: relative;
   left: 0px;

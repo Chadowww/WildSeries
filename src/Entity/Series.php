@@ -21,7 +21,7 @@ class Series
         $client = HttpClient::create();
         $response = $client->request(
             'GET',
-            'https://api.betaseries.com/shows/display?key=17d61e0acf16&id='. $id
+            'https://api.betaseries.com/shows/display?key=17d61e0acf16&id=' . $id
         );
 
         $statusCode = $response->getStatusCode();
@@ -43,6 +43,7 @@ class Series
         $response = $response->toArray();
         return $response;
     }
+
     public function showPopular(): array
     {
         $client = HttpClient::create();
@@ -56,6 +57,7 @@ class Series
         $response = $response->toArray();
         return $response;
     }
+
     public function showDiscover(): array
     {
         $client = HttpClient::create();
@@ -69,6 +71,7 @@ class Series
         $response = $response->toArray();
         return $response;
     }
+
     public function showNews(): array
     {
         $client = HttpClient::create();
@@ -82,6 +85,7 @@ class Series
         $response = $response->toArray();
         return $response;
     }
+
     public function getCategories(): array
     {
         $client = HttpClient::create();
@@ -95,12 +99,13 @@ class Series
         $response = $response->toArray();
         return $response;
     }
+
     public function getEpisodes(int $id): array
     {
         $client = HttpClient::create();
         $response = $client->request(
             'GET',
-            'https://api.betaseries.com/shows/episodes?key=17d61e0acf16&id='. $id
+            'https://api.betaseries.com/shows/episodes?key=17d61e0acf16&id=' . $id
         );
 
         $statusCode = $response->getStatusCode();
@@ -114,7 +119,7 @@ class Series
         $client = HttpClient::create();
         $response = $client->request(
             'GET',
-            'https://api.betaseries.com/shows/list?limit=300&key=17d61e0acf16'
+            'https://api.betaseries.com/shows/list?limit=500&genre='.$categories . '&key=17d61e0acf16'
         );
 
         $statusCode = $response->getStatusCode();
@@ -122,12 +127,13 @@ class Series
         $response = $response->toArray();
         return $response;
     }
+
     public function getCharacters(int $id): array
     {
         $client = HttpClient::create();
         $response = $client->request(
             'GET',
-            'https://api.betaseries.com/shows/characters?key=17d61e0acf16&id='. $id
+            'https://api.betaseries.com/shows/characters?key=17d61e0acf16&id=' . $id
         );
 
         $statusCode = $response->getStatusCode();
@@ -135,12 +141,13 @@ class Series
         $response = $response->toArray();
         return $response;
     }
+
     public function getCharacterById(int $id): array
     {
         $client = HttpClient::create();
         $response = $client->request(
             'GET',
-            'https://api.betaseries.com/persons/person?key=17d61e0acf16&id='. $id
+            'https://api.betaseries.com/persons/person?key=17d61e0acf16&id=' . $id
         );
 
         $statusCode = $response->getStatusCode();

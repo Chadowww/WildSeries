@@ -1,32 +1,32 @@
-{#{% extends 'base.html.twig' %}#}
+{# {% extends 'base.html.twig' %} #}
 
-{#{% block title %}Register{% endblock %}#}
+{# {% block title %}Register{% endblock %} #}
 
-{#{% block body %}#}
-{#    {% include 'includes/_navbar.html.twig' %}#}
-    <section class="container">
-        <div class="row ">
-            <div class="col-md-6 offset-md-3 align-self-center">
-                <fieldset class="mb-3">
-                    <h1 class="h3 mb-3 font-weight-normal">M'inscrire</h1>
-                    {{ form_start(registrationForm, {
-                        'attr': {
-                            'novalidate': 'novalidate',
-                            'action': path('app_register')
-                        }
-                    }) }}
-                    {{ form_row(registrationForm.firstname) }}
-                    {{ form_row(registrationForm.lastname) }}
-                    {{ form_row(registrationForm.email) }}
-                    {{ form_row(registrationForm.plainPassword, {
-                        label: 'Password'
-                    }) }}
-                    {{ form_row(registrationForm.RGPDConsent) }}
-                </fieldset>
-                <button type="submit" class="btn btn-lg btn-primary mt-3">M'inscrire</button>
-                {{ form_end(registrationForm) }}
-            </div>
+{# {% block body %} #}
+{#    {% include 'includes/_navbar.html.twig' %} #}
+<section class="container">
+    <div class="row ">
+        <div class="col-md-6 offset-md-3 align-self-center">
+            <fieldset class="mb-3">
+                <h1 class="h3 mb-3 font-weight-normal">M'inscrire</h1>
+                {{ form_start(registrationForm, {
+                    'attr': {
+                        'novalidate': 'novalidate',
+                        'action': path('app_register')
+                    }
+                }) }}
+                {{ form_row(registrationForm.firstname) }}
+                {{ form_row(registrationForm.lastname) }}
+                {{ form_row(registrationForm.email) }}
+                {{ form_row(registrationForm.plainPassword, {
+                    label: 'Password'
+                }) }}
+                {{ form_row(registrationForm.RGPDConsent) }}
+            </fieldset>
+            <button type="submit" class="btn btn-lg btn-primary mt-3">M'inscrire</button>
+            {{ form_end(registrationForm) }}
         </div>
-    </section>
+    </div>
+</section>
 
-{#{% endblock %}#}
+{# {% endblock %} #}

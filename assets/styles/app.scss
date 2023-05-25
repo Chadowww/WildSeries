@@ -12,29 +12,65 @@ $secondary: rgba(255, 188, 0, 1);
 @import "_includes/series.scss";
 @import "_includes/card-actor.scss";
 @import "_includes/actor.scss";
+@import "_includes/comment.scss";
+@import "_includes/glowingbtn.scss";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  font-family: avenir next, avenir, sans-serif;
+}
+
 .ws-navbar {
-    background-color: $primary;
+  background-color: #100e17;
 }
-body{
-    background-color: #100e17;
+
+body {
+  background-color: #100e17;
 }
-h2{
-    color: white;
-    font-weight: 300;
-    margin: 50px auto;
-    text-align: center;
+
+h1 {
+  color: whitesmoke;
+  font-weight: 400;
+  margin: 50px auto;
+  text-align: center;
 }
-h5{
-    color: white;
-    font-weight: 200;
-    margin: 10px 0px;
-    text-align: center;
-    width: 100%;
+
+h2, h3, h4, h5 {
+  color: whitesmoke;
+  font-weight: 300;
+  margin: 50px auto;
+  text-align: center;
 }
+
+h5 {
+  color: whitesmoke;
+  font-weight: 200;
+  margin: 10px 0px;
+  text-align: center;
+  width: 100%;
+}
+
 a {
-    text-decoration: none;
-    color: whitesmoke;
+  text-decoration: none;
+  color: whitesmoke;
 }
-p{
-    margin: 0;
+
+.navbar-a {
+  color: whitesmoke;
+}
+
+p {
+  margin: 0;
+  color: whitesmoke;
+}
+
+.radius {
+  border-radius: 20px;
+}
+
+button {
+  background: none;
+  border-style: none;
 }
