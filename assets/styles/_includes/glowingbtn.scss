@@ -2,17 +2,17 @@
   //width: 45rem;
   //height: 12rem;
   background: none;
-  border: 0.7rem solid rgb(201, 24, 74);
-  border-radius: 2rem;
+  //border: 0.7rem solid rgb(201, 24, 74);
+  //border-radius: 2rem;
   color: rgb(201, 24, 74);
   font-size: 2rem;
   letter-spacing: 2.5rem;
-  box-shadow: inset 0 0 3rem rgb(201, 24, 74);
+  //box-shadow: inset 0 0 3rem rgb(201, 24, 74);
   padding-left: 2.5rem;
   //cursor: pointer;
   pointer-events: auto;
   position: relative;
-  perspective: 6rem;
+  //perspective: 6rem;
   //animation: borderAnim 2s linear infinite;
   transition: all 0.3s;
 }
@@ -21,8 +21,8 @@
   text-decoration: none;
 }
 .glowing-btn:hover {
-  background: rgb(201, 24, 74);
-  color: #27292b;
+  //background: rgb(201, 24, 74);
+  //color: #27292b;
   animation: none;
 }
 
@@ -51,7 +51,7 @@
   content: "";
   width: 100%;
   height: 100%;
-  position: absolute;
+  //position: absolute;
   top: 0;
   left: 0;
   box-shadow: 0 0 6rem rgb(201, 24, 74);
@@ -78,6 +78,7 @@
 }
 
 .glowing-btn:hover::after {
+  display: flex;position: absolute;right: 50px;
   width: 120%;
   height: 120%;
   transform: translate(-50%, 110%) rotateX(45deg) scale(1, 0.35);

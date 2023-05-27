@@ -8,7 +8,9 @@
     <section class="">
         <div id="carrousel"  class="default-carrousel">
             <div class="">
-                <div class="title col-md-12 text-center"><h2>Actualités</h2></div>
+                <div class="title col-md-12 text-center">
+                    <h2>Actualités</h2>
+                </div>
                 <div class="col-md-12">
                     <div class="owl-carousel owl-theme">
                         <section class="customer-logos slider">
@@ -20,11 +22,11 @@
                                             <h5 class="card-title text-limit">{{ new.title }}</h5>
                                             <p class="card-text"></p>
                                         </div>
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">{{ new.date }}</li>
+                                        <ul class="list-group list-group-flush text-center">
+                                            <li class="card-link">{{ new.date }}</li>
                                         </ul>
-                                        <div style="text-align: center">
-                                            <a href="/serie" class="card-link">Aller à l'artcile</a>
+                                        <div class="card-footer">
+                                            <a href="/serie" class="card-link">Aller à l’article</a>
                                         </div>
                                     </a>
                                 </div>
@@ -34,16 +36,14 @@
 
                     </div>
                 </div>
-                {#                <div class="text-center"> #}
-                {#                    <button id="play-carousel" type="button" class="btn btn-dark">Play</button> #}
-                {#                    <div class="status"></div> #}
-                {#                </div> #}
             </div>
         </div>
 
         <div id="carrousel"  class="default-carrousel">
             <div class=" w-100 m-O">
-                <div class="title col-md-12 text-center"><h2>Série à Découvrir</h2></div>
+                <div class="title col-md-12 text-center">
+                    <h2>Séries à découvrir</h2>
+                </div>
                 <div class="col-md-12">
                     <div class="owl-carousel owl-theme">
                         <section class="customer-logos slider">
@@ -51,20 +51,23 @@
                                 <div class="card-car slide radius">
                                     <img src="{{ serie.images.show }}" class="card-img-top" height="150px" alt="...">
                                     <div class="card-body">
-                                        <h5 class="card-title"><a href="{{ serie.resource_url }}"
-                                                                  class="card-link">{{ serie.title }}</a></h5>
+                                        <h5 class="card-title">
+                                            <a href="{{ serie.resource_url }}" class="card-link card-ellipsis">{{
+                                                serie.title }}</a>
+                                        </h5>
                                         <p class="card-text  text-limit ">{{ serie.description }}</p>
                                     </div>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Genres :
+                                        <li class="card-link text-center card-ellipsis">Genres :
                                             {% for genre in serie.genres | slice (0, 2) %}
-                                                {{ genre }},
-                                            {% endfor %}</li>
-                                        <li class="list-group-item">Sortie : {{ serie.creation }}</li>
-                                        <li class="list-group-item">Note : {{ serie.notes.mean }}</li>
+                                                <a href="/category/{{ genre }}">{{ genre }}</a>,
+                                            {% endfor %}
+                                        </li>
+                                        <li class="card-link text-center">Sortie : {{ serie.creation }}</li>
+                                        <li class="card-link text-center">Note : {{ serie.notes.mean | round(2)}}</li>
 
                                     </ul>
-                                    <div style="text-align: center">
+                                    <div class="card-footer">
                                         <a href="/series/{{ serie.id }}" class="card-link">Aller à la série</a>
                                     </div>
                                 </div>
@@ -72,17 +75,13 @@
                         </section>
                     </div>
                 </div>
-                {#                <div class="text-center"> #}
-                {#                    <button id="play-carousel" type="button" class="btn btn-dark">Play</button> #}
-                {#                    <div class="status"></div> #}
-                {#                </div> #}
             </div>
         </div>
 
         <div class="w-10 default-carrousel">
             <div class="title col-md-12 text-center default">
-
-                <h2>Série Populaire</h2></div>
+                <h2>Séries populaire</h2>
+            </div>
 
                 <ul class="card-list">
                     {% for serie in series.shows %}
@@ -103,8 +102,8 @@
         </div>
     </section>
     <script>
-        // This is "probably" IE9 compatible but will need some fallbacks for IE8
-        // - (event listeners, forEach loop)
+        // This is "probably" IE9 compatible but will need some fallbacks for IE8—
+        // (event listeners, forEach loop)
 
         // wait for the entire page to finish loading
         window.addEventListener('load', function () {
@@ -115,12 +114,12 @@
         });
 
         function lazyLoad() {
-            var card_images = document.querySelectorAll('.card-image');
+            let card_images = document.querySelectorAll('.card-image');
 
             // loop over each card image
             card_images.forEach(function (card_image) {
-                var image_url = card_image.getAttribute('data-image-full');
-                var content_image = card_image.querySelector('img');
+                let image_url = card_image.getAttribute('data-image-full');
+                let content_image = card_image.querySelector('img');
 
                 // change the src of the content image to load the new high res photo
                 content_image.src = image_url;
@@ -141,9 +140,9 @@
         $(document).ready(function
             () {
             $('.customer-logos').slick({
-                slidesToShow: 4,
-                slidesToScroll: 4,
-                autoplay: false,
+                slidesToShow: 5,
+                slidesToScroll: 5,
+                autoplay: true,
                 speed: 2000,
                 autoplaySpeed: 10000,
                 arrows: true,
@@ -160,7 +159,7 @@
                         slidesToShow: 3
                     }
                 }, {
-                    breakpoint: 520,
+                    breakpoint: 375,
                     settings: {
                         slidesToShow: 2
                     }

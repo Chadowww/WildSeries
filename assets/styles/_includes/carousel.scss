@@ -90,6 +90,7 @@
 {
   display: block;
   object-fit: cover;
+  height: 150px;
 }
 .slick-slide.slick-loading img
 {
@@ -129,7 +130,8 @@
   text-overflow: ellipsis;
   white-space: pre-wrap;
   overflow-y: scroll;
-  margin: 10px auto;
+  color: whitesmoke;
+  padding: 5px 20px ;
 }
 .default-carrousel{
   width: 80%;
