@@ -1,0 +1,162 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ serie.show.title }}{% endblock %}
+
+{% block body %}
+{#{{ dump() }}#}
+    {% include 'includes/_navbar.html.twig' %}
+
+    <section class="main" style="background-image: url('{{ serie.show.images.show }}')">
+
+        <div class="banner">
+            <h1>{{ serie.show.title }}</h1>
+        </div>
+
+        <div class="body-container container">
+
+            <div class="body-description">
+                <img src="{{ serie.show.images.poster }}" alt="">
+                <div class="description">
+                    <p>{{ serie.show.description }}</p>
+                </div>
+            </div>
+
+            <div class="body-infos cards">
+
+                <div class=" card [ is-collapsed ] radius">
+                    <div class="card__inner [ js-expander ] radius">
+                        <span>Nombre de saisons : {{ serie.show.seasons }}</span>
+                    </div>
+                    <div class="card__expander radius">
+                        {% for infos in serie.show.seasons_details %}
+                            <div>
+                                <p>Saison : {{ infos.number }}</p>
+                                <p>Nombre d’épisodes {{ infos.episodes }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class=" card [ is-collapsed ] ">
+                    <div class="card__inner [ js-expander ] radius">
+                        <span>{{ serie.show.followers }} suivent cette série</span>
+                    </div>
+                </div>
+
+                <div class=" card [ is-collapsed ] radius ">
+                    <div class="card__inner [ js-expander ] radius">
+                        <span>créé en {{ serie.show.creation }} par :</span>
+                    </div>
+                    <div class="card__expander radius">
+                        {% for runner in serie.show.showrunners %}
+                            <div>
+                                <p>{{ runner.name }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class=" card [ is-collapsed ] radius ">
+                    <div class="card__inner [ js-expander ] radius">
+                        <span>Les genres </span>
+                    </div>
+                    <div class="card__expander radius">
+                        {% for genre in serie.show.genres %}
+                            <a href="/category/{{ genre }}"><p>{{ genre }}</p></a>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="container-actor">
+
+            <h2>Acteurs principaux</h2>
+
+            <div style="display: flex; justify-content: center; margin-left: 110px">
+
+                {% for character in characters.characters |slice(0, 10) %}
+                    <a href="/actors/{{ character.person_id }}">
+                        <div class="card-actor">
+                            <h3 class="title">{{ character.actor }}</h3>
+                            <div class="bar">
+{#                                <div class="emptybar"></div>#}
+{#                                <div class="filledbar"></div>#}
+                                <h5>{{ character.name }}</h5>
+                            </div>
+                            <div class="circle" style="background-image: url('{{ character.picture }}')">
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+
+            </div>
+        </div>
+        <div class="container mt-5">
+
+            <div class="row  d-flex justify-content-center">
+
+                <div class="col-md-8">
+
+                    {% for comment in comments.comments  %}
+                        <div class="card-comment p-3 mt-2">
+
+                            <div class="d-flex justify-content-between align-items-center">
+
+                                <div class="user d-flex flex-row align-items-center w-75">
+
+                                    <img src="{{ comment.avatar }}" width="10%" class="user-img rounded-circle mr-2">
+                                    <span><small class="font-weight-bold text-primary">{{ comment.login }}</small>
+                                        <small class="font-weight-bold"><p>{{ comment.text }}</p></small></span>
+
+                                </div>
+
+
+                                <small class="text-light">{{ comment.date }}</small>
+
+                            </div>
+
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        let $cell = $('.card');
+
+        //open and close card when clicked on card
+        $cell.find('.js-expander').click(function () {
+
+            let $thisCell = $(this).closest('.card');
+
+            if ($thisCell.hasClass('is-collapsed')) {
+                $cell.not($thisCell).removeClass('is-expanded').addClass('is-collapsed').addClass('is-inactive');
+                $thisCell.removeClass('is-collapsed').addClass('is-expanded');
+
+                if ($cell.not($thisCell).hasClass('is-inactive')) {
+                    //do nothing
+                } else {
+                    $cell.not($thisCell).addClass('is-inactive');
+                }
+
+            } else {
+                $thisCell.removeClass('is-expanded').addClass('is-collapsed');
+                $cell.not($thisCell).removeClass('is-inactive');
+            }
+        });
+
+        //close card when click on cross
+        $cell.find('.js-collapser').click(function () {
+
+            let $thisCell = $(this).closest('.card');
+
+            $thisCell.removeClass('is-expanded').addClass('is-collapsed');
+            $cell.not($thisCell).removeClass('is-inactive');
+
+        });
+    </script>
+{% endblock %}

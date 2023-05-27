@@ -1,64 +1,93 @@
 <nav class=" navbar navbar-expand-lg navbar-light ws-navbar">
     <div class="container-fluid main-container">
-            <div class="element">
-                <a class="navbar-brand" href="#">Wild-Series</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+        <div class="element">
+            <a href="/">
+                <button class="glowing-btn" type="button">
+                    <span class="glowing-text">Wild Series</span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
-            </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
+        </div>
 
-            <div class="element">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Catégorie
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Acteurs
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Mes Favoris</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="element">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 m-auto">
+                <li class="nav-item dropdown">
+                    <a class="text-white nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Catégories
+                    </a>
+                    <ul class=" dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for category in categories.genres %}
+                            <li><a class="dropdown-item" href="/category/{{ category }}">{{ category }}</a></li>
+                        {% endfor %}
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="text-white nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Acteurs
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="text-white dropdown-item" href="#">Action</a></li>
+                        <li><a class="text-whitedropdown-item" href="#">Another action</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="text-white nav-link active" aria-current="page" href="#">Mes Favoris</a>
+                </li>
+            </ul>
+        </div>
 
-            <div class="element">
-                <div>
-                    <a href="/logout">Déconnexion</a>
-                </div>
-                <div>
-                    <a href="/user">Nom Prenom</a>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                        Connexion
-                    </button>
-                </div>
-                <div>
-                    <img src="" alt="">
-                    <p>photo</p>
-                </div>
+        <div class="element">
+            <div class="glowing-btn">
+
+                {% if app.user is not empty %}
+                    <div  class="glowing-text">
+                         {% if app.user is defined and app.user is not empty %}
+                            <a href="/user/{{ app.user.id }}" style="font-size: 20px;
+                            letter-spacing:1rem;">
+                                <span>{{ app.user.firstname }} {{ app.user.lastname }}</span>
+                            </a>
+                         {% endif %}
+                    </div>
+                {% endif %}
+                        <!-- Button trigger modal -->
+
+                            {% if app.user is empty %}
+                                <span type="button" data-toggle="modal" data-target="#exampleModalCenter"
+                                        class="button-con glowing-text" style="font-size: larger; width: min-content;
+                                        letter-spacing: initial;">
+                                    Connexion
+                                </span>
+                            {% endif %}
+                            {% if app.user is not empty %}
+                                <div  class="glowing-text">
+                                    <a href="/logout" style="font-size: medium; width: min-content;letter-spacing:
+                                    initial;">
+                                        Déconnexion
+                                    </a>
+                                </div>
+                            {% endif %}
             </div>
+        </div>
         {% include '/includes/_modal-form.html.twig' %}
-{#            <form class="d-flex">#}
-{#                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">#}
-{#                <button class="btn btn-outline-success" type="submit">Search</button>#}
-{#            </form>#}
+        {#                    <form class="d-flex"> #}
+        {#                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> #}
+        {#                        <button class="btn btn-outline-success" type="submit">Search</button> #}
+        {#                    </form> #}
 
     </div>
 </nav>
